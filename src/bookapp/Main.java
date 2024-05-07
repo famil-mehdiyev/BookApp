@@ -28,8 +28,9 @@ public class Main {
 
                 case 3:
                     System.out.println("""
-                            1 : Qiymete gore axtarish etmek
-                            2 : Kitabin adina gore axtarish etmek
+                            1 : Qiymete gore axtarish etmek!
+                            2 : Kitabin adina gore axtarish etmek!
+                            3 : Qiymet araliginda olan kitablara gore axtarish etmek!
                             """);
                     int operationForThirdCase = new Scanner(System.in).nextInt();
                     switch (operationForThirdCase) {
@@ -39,6 +40,8 @@ public class Main {
                         case 2:
                             searchBookByName(books);
                             break;
+                        case 3:
+                            searchBookBetweenMinPriceAndMaxPrice(books);
                     }
 
 
@@ -93,13 +96,13 @@ public class Main {
         }
     }
 
-    public static void searchBookByPrice(Book[] books) {
+    public static void searchBookBetweenMinPriceAndMaxPrice(Book[] books) {
         System.out.println("Minimum qiymeti daxil edin :");
         int minPrice = new Scanner(System.in).nextInt();
         System.out.println("Maksimum qiymeti daxil edin :");
         int maxPrice = new Scanner(System.in).nextInt();
         for (int i = 0; i < books.length; i++) {
-            if (books[i].price > minPrice && books[i].price < maxPrice) {
+            if (books[i].price >= minPrice && books[i].price <= maxPrice) {
                 System.out.println("Name : " + books[i].name + " Price : " + books[i].price + " Count : " + books[i].count);
             }
         }
@@ -116,6 +119,19 @@ public class Main {
                 }
             }
 
+        }
+    }
+
+    public static void searchBookByPrice(Book[] books) {
+        System.out.println("Qiymeti daxil edin :");
+        int constantPice = new Scanner(System.in).nextInt();
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] != null) {
+
+                if (books[i].price >= constantPice) {
+                    System.out.println("Name : " + books[i].name + " Price : " + books[i].price + " Count : " + books[i].count);
+                }
+            }
         }
     }
 }
